@@ -8,8 +8,20 @@ class DockingStation
   end
 
   def release_bike
-    fail 'No bikes available' if empty?
-    bikes.pop
+    foundone = ""
+    if !bikes.empty?
+      bikes.each_with_index do |bike, index|
+        if bike.working? == true
+          foundone = bikes[index]
+          bikes.delete_at(index)
+        end
+      end
+    end
+    if foundone == ""
+      fail 'No bikes available'
+    else
+      foundone
+    end
   end
 
   def dock bike
@@ -17,7 +29,7 @@ class DockingStation
     bikes << bike
   end
 
-  private
+private
 
   attr_reader :bikes
 
