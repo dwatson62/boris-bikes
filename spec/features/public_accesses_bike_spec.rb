@@ -35,7 +35,7 @@ feature 'member of public returns bike' do
   scenario 'bike cannot be be docked when station reaches extended capacity' do
     docking_station = DockingStation.new(50)
     50.times {docking_station.dock(Bike.new)}
-    expect {docking_station.dock Bike.new }.to raise_error 'Docking station full'
+    expect {docking_station.dock Bike.new }.to raise_error 'DockingStation full'
   end
   scenario 'bike can be reported broken when returned' do
     bike = Bike.new
